@@ -1,0 +1,37 @@
+.containerForm{
+  position: absolute;
+  width: 20%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-form {
+  width: 40%;
+  margin: 50px auto;
+  font-size: 15px;
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.form-control,
+.btn {
+  min-height: 12%;
+  border-radius: 2px;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+.login-link a {
+  color: #dc3545;
+}
+.login-link a:hover {
+  color: #c82333;
+}
+.padgrp{
+
+  margin:  2% 0;
+}
