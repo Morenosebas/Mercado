@@ -8,7 +8,8 @@ export const Login = () => {
         <form>
           <div className="form-group ">
             <input
-              type="email"
+              name="username"
+              type="text"
               className="form-control"
               placeholder="Correo electrónico"
               required="required"
@@ -19,6 +20,7 @@ export const Login = () => {
               type="password"
               className="form-control"
               placeholder="Contraseña"
+              name="password"
               required="required"
             />
           </div>

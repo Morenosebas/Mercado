@@ -8,7 +8,8 @@ export const SignUp = () => {
         <form>
           <div className="form-group ">
             <input
-              type="email"
+              type="text"
+              name="username"
               className="form-control"
               placeholder="Correo electrónico"
               required="required"
@@ -20,6 +21,7 @@ export const SignUp = () => {
               id="pass"
               type="password"
               className="form-control"
+              name="password"
               placeholder="Contraseña"
               required="required"
             />
@@ -41,9 +43,6 @@ export const SignUp = () => {
             <label className="float-left checkbox-inline">
               <input type="checkbox" /> Recordarme
             </label>
-            <a href="#" className="float-right login-link">
-              ¿Olvidaste tu contraseña?
-            </a>
           </div>
         </form>
         <p className="text-center login-link">

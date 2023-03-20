@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion";
 import { Login } from './Components/privateComponents/login';
 import { SignUp } from './Components/privateComponents/signup';
+import {Profile} from './Components/privateComponents/profile';
+
 function App() {
   return (
     <Router>
@@ -47,7 +49,7 @@ function App() {
             key="profile"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}><Index /></motion.div>} />
+            exit={{ opacity: 0 }}><Profile /></motion.div>} />
           <Route exact path='/products' element={<motion.div
             key="products"
             initial={{ opacity: 0 }}
