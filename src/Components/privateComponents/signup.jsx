@@ -1,11 +1,19 @@
 import "../styles/login.css";
+import { useInitSession } from "../Controllers/fetch.js";
 
 export const SignUp = () => {
+  const [isAuthenticated, fetchSession] = useInitSession();
+  const id = "signup";
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    fetchSession(id,e);
+  };
   return (
     <div className="container containerForm">
       <div className="login-form ">
         <h1 className="text-center ">Registrate</h1>
-        <form>
+        <form id={id} method="POST" onSubmit={onSubmit}>
           <div className="form-group ">
             <input
               type="text"
@@ -18,7 +26,7 @@ export const SignUp = () => {
           <div className="form-group padgrp">
             <label htmlFor="pass">Contraseña</label>
             <input
-              id="pass"
+              id="password"
               type="password"
               className="form-control"
               name="password"
