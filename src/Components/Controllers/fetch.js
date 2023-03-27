@@ -1,12 +1,23 @@
 import { store } from "../../Redux/store.config";
 import { initSession, logoutSession } from "../../Redux/slice/user";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+export const useLogout = () => {
+    const dispatch = useDispatch();
+    const [isAuthenticated, setAuth] = useState(true);
+    const logout = (event) => {
+        event.preventDefault();
+        setAuth(false)
+        dispatch(logoutSession())
+    }
+    return [isAuthenticated, logout]
+}
 
 export const useInitSession = () => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const selector = useSelector((state) => state.session.session)
+    const selector = useSelector((state) => state.session)
     console.log(selector);
     const dispatch = useDispatch();
     const fetchSession = (TypeRequest, event) => {
@@ -22,13 +33,6 @@ export const useInitSession = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                "Allow-Origin": "http://localhost:3000",
-                "Access-Control-Allow-Origin": "http://localhost:3000",
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-                "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-                // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept" 
-                // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             },
             mode: "cors",
 
@@ -37,12 +41,15 @@ export const useInitSession = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                // if (data.success) {
-                //     setIsAuthenticated(true);
-                // } else {
-                //     setIsAuthenticated(false);
-                // }
+                if (data.isAuthenticated) {
+                    const username = data.requestUser.username;
+                    const createdDt = data.requestUser.createdAt;
+                    const updatedDt = data.requestUser.updatedAt;
+                    const id = data.requestUser._id;
+                    console.log(id)
+                    setIsAuthenticated(true);
+                    dispatch(initSession({ username, createdDt, updatedDt, id: id }))
+                }
             })
             .catch(err => {
                 console.warn(err);

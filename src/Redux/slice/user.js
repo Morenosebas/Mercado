@@ -1,10 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { store } from "../store.config";
 
-
 const loadState = () => {
     try {
-        console.log(localStorage.getItem("state"));
         const serializedState = localStorage.getItem("state");
         if (serializedState === null) {
             return undefined;
@@ -31,7 +29,6 @@ const loadState = () => {
 const saveState = (state) => {
     try {
         const serializedState = JSON.stringify({ session: state }); // solo guardar el estado del slice "session"
-        console.log("state: ", serializedState);
         localStorage.setItem("state", serializedState);
     } catch {
         // ignore write errors
@@ -42,10 +39,11 @@ const saveState = (state) => {
 const initialState = {
     session: loadState() ?? {
         username: "",
-        email: "",
         isAuthenticated: false,
         createdDt: "",
         updatedDt: "",
+        id: null,
+        store: false,
     }
 };
 
@@ -58,18 +56,20 @@ const sessionSlice = createSlice({
     reducers: {
         initSession: (state, action) => {
             state.username = action.payload.username;
-            state.email = action.payload.email;
             state.createdDt = action.payload.createdDt;
             state.updatedDt = action.payload.updatedDt;
+            state.id = action.payload.id;
             state.isAuthenticated = true;
+            state.store = action.payload.store ? action.payload.store : false;
             saveState(state);
         },
         logoutSession: (state) => {
             state.username = "";
-            state.email = "";
             state.isAuthenticated = false;
             state.createdDt = "";
             state.updatedDt = "";
+            state.id = null;
+            state.store = false;
             saveState(state);
         },
     },
@@ -83,26 +83,34 @@ export const checkAuthState = createAsyncThunk(
     "session/checkAuthState",
     (
         async () => {
+            if (!loadState().isAuthenticated) {
+                const response = await fetch("http://localhost:5000/api/user", {
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                const data = await response.json();
+                const { isAuthenticated, requestUser } = data
 
-            const response = await fetch("http://localhost:5000/api/profile", {
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
+                if (!isAuthenticated) {
+                    store.dispatch(logoutSession());
+                    localStorage.clear();
+                    return isAuthenticated;
+                } else {
+                    store.dispatch(initSession({
+                        username: requestUser.username,
+                        createdDt: requestUser.createdAt,
+                        updatedDt: requestUser.updatedAt,
+                        id: requestUser._id,
+
+                    }));
+                    return isAuthenticated;
                 }
-            });
-            const data = await response.json();
-            const { isAuthenticated } = data
-
-            if (!isAuthenticated) {
-                console.log(data)
-                store.dispatch(logoutSession());
-                localStorage.clear();
-                return isAuthenticated;
-            } else {
-                console.log(data)
-                return isAuthenticated;
             }
-        })
+            return
+        }
+    )
 );
 export { persistedState };
 

@@ -2,20 +2,19 @@ import "../styles/login.css";
 import { useInitSession } from "../Controllers/fetch.js";
 
 export const Login = () => {
-
   const [isAuthenticated, fetchSession] = useInitSession();
   const id = "signin";
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fetchSession(id,e);
+    fetchSession(id, e);
   };
 
   return (
     <div className="container containerForm">
       <div className="login-form ">
         <h2 className="text-center ">Iniciar sesión</h2>
-        <form id={id} method="POST" onSubmit={onSubmit}  >
+        <form id={id} method="POST" onSubmit={(e) => onSubmit(e)}>
           <div className="form-group ">
             <input
               name="username"
