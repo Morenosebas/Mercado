@@ -14,10 +14,10 @@ const variants = {
   },
 };
 
-export const Navigation = (isOpen) => {
-  isOpen = isOpen.open;
+export const Navigation = ({ toggle, open }) => {
   return (
     <motion.div
+      onClick={toggle}
       style={{
         position: "fixed",
         top: 0,
@@ -26,11 +26,11 @@ export const Navigation = (isOpen) => {
         bottom: 0,
         borderRight: "2px solid black",
         background: "#fff",
-        opacity: isOpen ? 1 : 0,
-        pointerEvents: isOpen ? "auto" : "none",
+        opacity: open ? 1 : 0,
+        pointerEvents: open ? "auto" : "none",
       }}
       initial={false}
-      animate={isOpen ? "open" : "closed"}
+      animate={open ? "open" : "closed"}
       variants={variants}
     >
       <motion.ul className="ulVariant">

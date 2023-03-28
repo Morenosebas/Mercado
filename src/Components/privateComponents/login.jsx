@@ -1,6 +1,6 @@
 import "../styles/login.css";
 import { useInitSession } from "../Controllers/fetch.js";
-
+import { NavLink } from "react-router-dom";
 export const Login = () => {
   const [isAuthenticated, fetchSession] = useInitSession();
   const id = "signin";
@@ -42,13 +42,13 @@ export const Login = () => {
             <label className="float-left checkbox-inline">
               <input type="checkbox" /> Recordarme
             </label>
-            <a href="/signup" className="float-right login-link">
+            <NavLink to="/recover" className="float-right login-link">
               ¿Olvidaste tu contraseña?
-            </a>
+            </NavLink>
           </div>
         </form>
         <p className="text-center login-link">
-          ¿No tienes una cuenta? <a href="#">Regístrate aquí</a>
+          ¿No tienes una cuenta? <NavLink to="/signup">Regístrate aquí</NavLink>
         </p>
       </div>
     </div>

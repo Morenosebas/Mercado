@@ -1,18 +1,8 @@
 import { store } from "../../Redux/store.config";
-import { initSession, logoutSession } from "../../Redux/slice/user";
+import { initSession } from "../../Redux/slice/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
-export const useLogout = () => {
-    const dispatch = useDispatch();
-    const [isAuthenticated, setAuth] = useState(true);
-    const logout = (event) => {
-        event.preventDefault();
-        setAuth(false)
-        dispatch(logoutSession())
-    }
-    return [isAuthenticated, logout]
-}
 
 export const useInitSession = () => {
 

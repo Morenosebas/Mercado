@@ -41,7 +41,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   border: 2px solid transparent;
-  outline: #000 7px solid;
+  outline: #000 3px solid;
   border-radius: 2%;
   transition: all 1s;
   justify-content: space-between;
@@ -50,7 +50,6 @@
 .principal:hover {
   filter: brightness(1.1);
   filter: saturate(1.2);
-  box-shadow: 0px 0px 200px 70px rgb(0, 0, 0);
 }
 
 .despl {

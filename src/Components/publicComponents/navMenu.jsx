@@ -19,10 +19,8 @@ export const NavMenu = () => {
       custom={height}
       ref={containerRef}
     >
-      <motion.div
-        className="background"
-      />
-      <Navigation open={isOpen} />
+      <motion.div className="background" />
+      <Navigation open={isOpen} toggle={() => toggleOpen()} />
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>
   );

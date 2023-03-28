@@ -2,9 +2,27 @@ import "../styles/socialnet.css";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { store } from "../../Redux/store.config";
+import { logoutSession } from "../../Redux/slice/user";
 
 export const SocialNet = () => {
   const { isAuthenticated, store } = useSelector((state) => state.session);
+  const dispatch = useDispatch();
+
+  const logout = (event) => {
+    fetch("http://localhost:5000/api/logout", {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("hola");
+        dispatch(logoutSession());
+      });
+  };
 
   return (
     <motion.div
@@ -91,6 +109,18 @@ export const SocialNet = () => {
                 <NavLink className="dropdown-item drop" to="/user/stores">
                   Tiendas
                 </NavLink>
+              </li>
+            )}
+            {isAuthenticated && (
+              <li
+                className="dropdown-item drop"
+                style={{
+                  color: "red",
+                  fontWeight: "bold",
+                }}
+                onClick={logout}
+              >
+                Logout
               </li>
             )}
           </ul>

@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthState } from './Redux/slice/user'
 import { store } from './Redux/store.config';
 import { ProtectedRoute } from './Components/privateComponents/privateSite';
-
-
+import { Sell } from './Components/privateComponents/sellpage';
+import { CreateStore } from './Components/privateComponents/createStore';
 function App() {
 
   const dispatch = useDispatch();
@@ -81,8 +81,8 @@ function App() {
             exit={{ opacity: 0 }}><Index /></motion.div>} />
           <Route exact path='/profile' element={
             <ProtectedRoute
-            isAllowed={isAuthenticated}
-            redirectTo={"/"}
+              isAllowed={isAuthenticated}
+              redirectTo={"/"}
             >
               <motion.div
                 key="profile"
@@ -90,6 +90,34 @@ function App() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
                 <Profile />
+              </motion.div>
+            </ProtectedRoute>
+          } />
+          <Route exact path='/sell' element={
+            <ProtectedRoute
+              isAllowed={isAuthenticated}
+              redirectTo={"/"}
+            >
+              <motion.div
+                key="Sell"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <Sell />
+              </motion.div>
+            </ProtectedRoute>
+          } />
+          <Route exact path='/user/newshop' element={
+            <ProtectedRoute
+              isAllowed={isAuthenticated}
+              redirectTo={"/"}
+            >
+              <motion.div
+                key="newStore"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <CreateStore />
               </motion.div>
             </ProtectedRoute>
           } />

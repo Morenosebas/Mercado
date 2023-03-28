@@ -76,10 +76,12 @@ export const Index = () => {
         <motion.div className="container contproducts">
           {items.map((item) => (
             <motion.div
+              initial={{ opacity: 0, y: 0, width: "100%" }}
+              animate={{ opacity: 1, y: 0, width: "33%" }}
+              transition={{ duration: .2 }}
               key={item.id}
-              transition={{ duration: 0.1, ease: "linear" }}
               className="contIndex"
-              layoutId={item.id}
+              layoutId={`product-${item.id}`}
               onClick={() => setSelectedId(item.id)}
             >
               <motion.div className="card " style={{ width: "18rem" }}>
@@ -100,11 +102,7 @@ export const Index = () => {
 
         <AnimatePresence>
           {selectedId && (
-            <motion.div
-              transition={{ duration: 0.3, ease: "backInOut" }}
-              className="despl"
-              layoutId={selectedId}
-            >
+            <motion.div className="despl" layoutId={selectedId}>
               <motion.div
                 className="select"
                 layoutId={items.find((item) => item.id === selectedId)}
@@ -132,7 +130,7 @@ export const Index = () => {
                   <motion.p style={{ margin: "5px" }} className="card-text">
                     {items.find((item) => item.id === selectedId).description}
                   </motion.p>
-                  <button  className="btn btn-success">
+                  <button className="btn btn-success">
                     <NavLink href="#" className={"btn-buynow"}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

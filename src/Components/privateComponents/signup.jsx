@@ -1,13 +1,15 @@
 import "../styles/login.css";
 import { useInitSession } from "../Controllers/fetch.js";
+import { NavLink } from "react-router-dom";
 
+//falta validar que al repetir la contraseña si inicie session
 export const SignUp = () => {
   const [isAuthenticated, fetchSession] = useInitSession();
   const id = "signup";
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fetchSession(id,e);
+    fetchSession(id, e);
   };
   return (
     <div className="container containerForm">
@@ -54,7 +56,7 @@ export const SignUp = () => {
           </div>
         </form>
         <p className="text-center login-link">
-          ¿Tienes una cuenta? <a href="#">Inicia sesión aquí</a>
+          ¿Tienes una cuenta? <NavLink to="/signin">Inicia sesión aquí</NavLink>
         </p>
       </div>
     </div>
