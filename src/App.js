@@ -15,6 +15,7 @@ import { store } from './Redux/store.config';
 import { ProtectedRoute } from './Components/privateComponents/privateSite';
 import { Sell } from './Components/privateComponents/sellpage';
 import { CreateStore } from './Components/privateComponents/createStore';
+import { StoreList } from './Components/privateComponents/storeList';
 function App() {
 
   const dispatch = useDispatch();
@@ -24,8 +25,7 @@ function App() {
       dispatch(checkAuthState());
     }, 5000)
   }, [dispatch, Authenticated]);
-  const { isAuthenticated } = store.getState().session;
-
+  const { isAuthenticated, storeS } = store.getState().session;
   return (
     <Router>
       <NavBar />
@@ -118,6 +118,20 @@ function App() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
                 <CreateStore />
+              </motion.div>
+            </ProtectedRoute>
+          } />
+          <Route exact path='/user/stores' element={
+            <ProtectedRoute
+              isAllowed={storeS}
+              redirectTo={"/"}
+            >
+              <motion.div
+                key="newStore"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <StoreList />
               </motion.div>
             </ProtectedRoute>
           } />

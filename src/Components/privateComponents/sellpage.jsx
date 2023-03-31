@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const Sell = () => {
   return (
-    <div className="sellcont bg-light">
+    <div className="sellcont">
       <div className="row headerSell">
         <div className="col-2 headerSell">Vender</div>
         <div className="col-10 colHeader">
@@ -13,7 +13,7 @@ export const Sell = () => {
       </div>
       <div className="row bodySell">
         <img
-          src={require("../img/FastEats.png")}
+          src={require("../img/logo/FastEats_2.png")}
           alt="carro"
           className="imgBike"
         />

@@ -7,7 +7,8 @@ import { store } from "../../Redux/store.config";
 import { logoutSession } from "../../Redux/slice/user";
 
 export const SocialNet = () => {
-  const { isAuthenticated, store } = useSelector((state) => state.session);
+  const { isAuthenticated, storeS } = useSelector((state) => state.session);
+
   const dispatch = useDispatch();
 
   const logout = (event) => {
@@ -19,7 +20,6 @@ export const SocialNet = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("hola");
         dispatch(logoutSession());
       });
   };
@@ -104,7 +104,7 @@ export const SocialNet = () => {
                 </NavLink>
               </li>
             )}
-            {isAuthenticated && store && (
+            {isAuthenticated && storeS && (
               <li>
                 <NavLink className="dropdown-item drop" to="/user/stores">
                   Tiendas

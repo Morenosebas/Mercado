@@ -78,10 +78,16 @@ export const Index = () => {
             <motion.div
               initial={{ opacity: 0, y: 0, width: "100%" }}
               animate={{ opacity: 1, y: 0, width: "33%" }}
-              transition={{ duration: .2 }}
+              transition={{
+                duration: 0.1,
+                stiffness: 2000,
+                type: "keyframes",
+                delay: 1,
+                ease: "circInOut",
+              }}
               key={item.id}
               className="contIndex"
-              layoutId={`product-${item.id}`}
+              layoutId={item.id}
               onClick={() => setSelectedId(item.id)}
             >
               <motion.div className="card " style={{ width: "18rem" }}>
@@ -102,7 +108,17 @@ export const Index = () => {
 
         <AnimatePresence>
           {selectedId && (
-            <motion.div className="despl" layoutId={selectedId}>
+            <motion.div
+              className="despl"
+              transition={{
+                type: "keyframes",
+                duration: 0.8,
+                mass: 0.5,
+                stiffness: 300,
+                damping: 20,
+              }}
+              layoutId={selectedId}
+            >
               <motion.div
                 className="select"
                 layoutId={items.find((item) => item.id === selectedId)}

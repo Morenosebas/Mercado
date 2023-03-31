@@ -43,7 +43,7 @@ const initialState = {
         createdDt: "",
         updatedDt: "",
         id: null,
-        store: false,
+        storeS: false,
     }
 };
 
@@ -59,17 +59,21 @@ const sessionSlice = createSlice({
             state.createdDt = action.payload.createdDt;
             state.updatedDt = action.payload.updatedDt;
             state.id = action.payload.id;
+            state.storeS = action.payload.storeS ? action.payload.storeS : false;
             state.isAuthenticated = true;
-            state.store = action.payload.store ? action.payload.store : false;
             saveState(state);
         },
+        createShop: (state,action)=>{
+            state.storeS = action.payload.storeS ? action.payload.storeS : false;
+        }
+        ,
         logoutSession: (state) => {
             state.username = "";
             state.isAuthenticated = false;
             state.createdDt = "";
             state.updatedDt = "";
             state.id = null;
-            state.store = false;
+            state.storeS = false;
             saveState(state);
         },
     },
@@ -103,7 +107,7 @@ export const checkAuthState = createAsyncThunk(
                         createdDt: requestUser.createdAt,
                         updatedDt: requestUser.updatedAt,
                         id: requestUser._id,
-
+                        storeS: requestUser.store
                     }));
                     return isAuthenticated;
                 }
@@ -114,6 +118,6 @@ export const checkAuthState = createAsyncThunk(
 );
 export { persistedState };
 
-export const { initSession, logoutSession } = sessionSlice.actions;
+export const { initSession, logoutSession,createShop } = sessionSlice.actions;
 
 export default reducer;
