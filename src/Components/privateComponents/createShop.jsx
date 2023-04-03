@@ -1,12 +1,14 @@
-import "../styles/createStore.css";
-import { useDispatch } from "react-redux";
+import "../styles/createShop.css";
+import { useDispatch, useSelector } from "react-redux";
 import { createShop } from "../../Redux/slice/user";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-export const CreateStore = () => {
-  const [created, setShop] = useState(false);
-  const dispatch = useDispatch();
 
+export const CreateShops = () => {
+  const dispatch = useDispatch();
+  const { storeS } = useSelector((state) => state.session);
+  const [shop, setShop] = useState(false);
+  console.log(storeS);
   const onSubmit = (e) => {
     e.preventDefault();
     const formulario = new FormData();
@@ -26,24 +28,19 @@ export const CreateStore = () => {
       .then((data) => {
         console.log(data);
         if (data.created) {
-          setShop(data.created);
           dispatch(
             createShop({
               storeS: data.created,
             })
           );
-         // Actualizar el estado aquí
+          // Actualizar el estado aquí
+          setShop(true);
         }
       });
   };
 
-  useEffect(() => {
-
-  }, [created]);
-
-  if (created) {
-    return <Navigate to="/user/stores" />;
-  }
+  useEffect(() => {}, [shop]);
+  if (shop) return <Navigate to="/sell " />;
   return (
     <div className="container newStoreCont">
       <div className="row justify-content-center">
@@ -80,6 +77,7 @@ export const CreateStore = () => {
                     type="file"
                     name="myImage"
                     accept="image/png, image/webp, image/jpeg, image/jpg"
+                    required
                   />
                   <label htmlFor="categoriaStore">Categoria </label>
                   <select name="categoriaStore" id="categoriaStore">

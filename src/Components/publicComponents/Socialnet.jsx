@@ -99,16 +99,16 @@ export const SocialNet = () => {
             )}
             {isAuthenticated && (
               <li>
-                <NavLink className="dropdown-item drop" to="/sell">
+                <a className="dropdown-item drop" href="/sell">
                   Vender
-                </NavLink>
+                </a>
               </li>
             )}
             {isAuthenticated && storeS && (
               <li>
-                <NavLink className="dropdown-item drop" to="/user/stores">
+                <a className="dropdown-item drop" href="/user/shops">
                   Tiendas
-                </NavLink>
+                </a>
               </li>
             )}
             {isAuthenticated && (

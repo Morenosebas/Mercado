@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import "../styles/storeList.css";
+import "../styles/shopList.css";
 import { NavLink } from "react-router-dom";
 
-export const StoreList = () => {
+export const ShopList = () => {
   const [tiendas, setTiendas] = useState([]);
 
   useEffect(() => {
@@ -11,9 +11,10 @@ export const StoreList = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data);
+        
         if (tiendas.length !== data.data.length) {
           setTiendas(data.data);
+          console.log(data.data);
         }
       })
       .catch((error) => console.log(error));
@@ -66,7 +67,12 @@ export const StoreList = () => {
                           <p className="card-text">
                             <small className="text-body-secondary">
                               <button className="btn btn-light fw-bold">
-                                <NavLink to={`/user/shops/${tienda._id}`}>entrar</NavLink>
+                                <NavLink
+                                  to={`/user/shops/${tienda._id}`}
+                                  style={{ textDecoration: "none",color: "#000"  }}
+                                >
+                                  entrar
+                                </NavLink>
                               </button>
                             </small>
                           </p>

@@ -63,7 +63,7 @@ const sessionSlice = createSlice({
             state.isAuthenticated = true;
             saveState(state);
         },
-        createShop: (state,action)=>{
+        createShop: (state, action) => {
             state.storeS = action.payload.storeS ? action.payload.storeS : false;
         }
         ,
@@ -93,7 +93,10 @@ export const checkAuthState = createAsyncThunk(
                     headers: {
                         "Content-Type": "application/json"
                     }
-                });
+                }).catch(() => {
+                    store.dispatch(logoutSession())
+                    localStorage.clear()
+                })
                 const data = await response.json();
                 const { isAuthenticated, requestUser } = data
 
@@ -118,6 +121,6 @@ export const checkAuthState = createAsyncThunk(
 );
 export { persistedState };
 
-export const { initSession, logoutSession,createShop } = sessionSlice.actions;
+export const { initSession, logoutSession, createShop } = sessionSlice.actions;
 
 export default reducer;

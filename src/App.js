@@ -14,8 +14,12 @@ import { checkAuthState } from './Redux/slice/user'
 import { store } from './Redux/store.config';
 import { ProtectedRoute } from './Components/privateComponents/privateSite';
 import { Sell } from './Components/privateComponents/sellpage';
-import { CreateStore } from './Components/privateComponents/createStore';
-import { StoreList } from './Components/privateComponents/storeList';
+import { CreateShops } from './Components/privateComponents/createShop';
+import { ShopList } from './Components/privateComponents/shopList';
+import { ShopProfile } from './Components/privateComponents/shopProfile';
+import { CreateProduct } from './Components/privateComponents/createProduct';
+
+
 function App() {
 
   const dispatch = useDispatch();
@@ -113,25 +117,53 @@ function App() {
               redirectTo={"/"}
             >
               <motion.div
-                key="newStore"
+                key="newShop"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
-                <CreateStore />
+                <CreateShops />
               </motion.div>
             </ProtectedRoute>
           } />
-          <Route exact path='/user/stores' element={
+          <Route exact path='/user/shops' element={
             <ProtectedRoute
               isAllowed={storeS}
               redirectTo={"/"}
             >
               <motion.div
-                key="newStore"
+                key="listShops"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
-                <StoreList />
+                <ShopList />
+              </motion.div>
+            </ProtectedRoute>
+          } />
+          <Route exact path='/user/shops/:idShop' element={
+            <ProtectedRoute
+              isAllowed={storeS}
+              redirectTo={"/"}
+            >
+              <motion.div
+                key="ShopProfile"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <ShopProfile />
+              </motion.div>
+            </ProtectedRoute>
+          } />
+          <Route exact path='/shop/:idShop/addproduct' element={
+            <ProtectedRoute
+              isAllowed={storeS}
+              redirectTo={"/user/shops"}
+            >
+              <motion.div
+                key="addProduct"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <CreateProduct />
               </motion.div>
             </ProtectedRoute>
           } />
@@ -147,4 +179,8 @@ function App() {
 }
 
 export default App;
+
+
+//revisar el enrutamiento, a la hora de estar en una cuenta de administrador
+//revisar
 
