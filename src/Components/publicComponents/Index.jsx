@@ -3,12 +3,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
 
-export const Index = ({allProducts}) => {
+export const Index = ({ allProducts }) => {
   const [selectedId, setSelectedId] = useState(null);
   return (
     <>
-      <motion.div className="container principal">
-        <motion.div className="container contproducts">
+      <motion.div className="container bg-dark principal">
+        <motion.div className={selectedId===null?"container contproducts":"container contproducts darkeffect"}>
           {allProducts.map((item) => (
             <motion.div
               initial={{ opacity: 0, y: 0, width: "100%" }}
@@ -25,11 +25,15 @@ export const Index = ({allProducts}) => {
               layoutId={item.id}
               onClick={() => setSelectedId(item.id)}
             >
-              <motion.div className="card " style={{ width: "18rem" }}>
+              <motion.div
+                className="card align-items-center "
+                style={{ width: "270px", height: "240px" }}
+              >
                 <motion.img
                   src={`${item.img}`}
                   className="card-img-top"
                   alt="..."
+                  style={{ width: "270px", height: "240px" }}
                 />
                 <motion.div className="card-body ">
                   <motion.p style={{ color: "#000" }} className="card-text">
@@ -66,7 +70,9 @@ export const Index = ({allProducts}) => {
                 </motion.div>
                 <motion.img
                   className="imgContainer col-6"
-                  src={`${allProducts.find((item) => item.id === selectedId).img}`}
+                  src={`${
+                    allProducts.find((item) => item.id === selectedId).img
+                  }`}
                 />
                 <motion.div style={{ margin: "5px" }} className="card-body">
                   <motion.h5 style={{ margin: "5px" }} className="card-title">
@@ -79,7 +85,10 @@ export const Index = ({allProducts}) => {
                     Pizza
                   </motion.h6>
                   <motion.p style={{ margin: "5px" }} className="card-text">
-                    {allProducts.find((item) => item.id === selectedId).description}
+                    {
+                      allProducts.find((item) => item.id === selectedId)
+                        .description
+                    }
                   </motion.p>
                   <button className="btn btn-success">
                     <NavLink href="#" className={"btn-buynow"}>

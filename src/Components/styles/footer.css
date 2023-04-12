@@ -1,0 +1,7 @@
+#footer {
+    background-color: black;
+    position: relative;
+    color: white ;
+    display: flex;
+    top:740px;
+}

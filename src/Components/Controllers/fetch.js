@@ -7,15 +7,15 @@ import { items, tiendas } from "../helper/data";
 export const useGetShopsData = () => {
   //Revisar ruta si es correcta
   //las inicializaciones deben ser remplazadas por una cache
-  const [shops, setShops] = useState(tiendas)
+  const [shops, setShops] = useState(null)
   const [products, setProducts] = useState(items)
   const fetchProducts = async () => {
-    const data = await fetch("http://localhost:5000/api/products")
+    const data = await fetch("http://localhost:5000/api/shops")
     const response = await data.json()
-    if (response.ok) {
-      setProducts(response.data)
+    if (!response.error) {
+      setShops(response)
     } else {
-      setProducts(items)
+      setShops(items)
     }
   }
   return [shops, products, fetchProducts]

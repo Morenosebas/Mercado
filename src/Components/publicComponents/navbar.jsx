@@ -4,7 +4,7 @@ import { NavMenu } from "./navMenu";
 
 export const NavBar = () => {
   return (
-    <div className="container-fluid Navcontainer bg-light">
+    <div className="container-fluid Navcontainer bg-light" style={{zIndex:1000}}>
       <nav className="navbar bg-body-success">
         <div className="container-fluid">
           <div className="navbar-brand ">

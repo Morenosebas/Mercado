@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 
 export const ShopList = () => {
   const [tiendas, setTiendas] = useState([]);
-
   useEffect(() => {
     fetch("http://localhost:5000/api/user/shops", {
       credentials: "include",
