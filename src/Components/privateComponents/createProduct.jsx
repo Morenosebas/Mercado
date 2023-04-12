@@ -2,17 +2,32 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 export const CreateProduct = () => {
   const { idShop } = useParams();
-
-  const onSubmit = (e) => {
+  const [created, setCreated] = useState(false);
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(`Create Product`);
     const formulario = new FormData();
     formulario.append("Nombre", e.target.Nombre.value);
     formulario.append("descripcion", e.target.descripcion.value);
     formulario.append("categoriaProduct", e.target.categoriaProduct.value);
-    formulario.append("price", e.target.price.value);
-    formulario.append("stock", e.target.stock.value);
-    formulario.append("image", e.target.myImage.files[0]);
+    formulario.append("price", e.target.Price.value);
+    formulario.append("stock", e.target.Stock.value);
+    formulario.append("image", e.target.myImageProducto.files[0]);
+
+    const data = await fetch(`http://localhost:5000/api/${idShop}/addprod`, {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      body: formulario,
+    })
+      .catch(err => console.warn(err))
+    const response = await data.json()
+    console.log(response)
+    if (response.created) {
+      setCreated(true)
+    } else {
+      setCreated(false)
+    }
   };
 
   return (

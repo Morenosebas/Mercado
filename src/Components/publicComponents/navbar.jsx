@@ -5,9 +5,9 @@ import { NavMenu } from "./navMenu";
 export const NavBar = () => {
   return (
     <div className="container-fluid Navcontainer bg-light">
-      <nav className="navbar bg-body-tertiary">
+      <nav className="navbar bg-body-success">
         <div className="container-fluid">
-          <div className="navbar-brand  ">
+          <div className="navbar-brand ">
             <NavMenu />
           </div>
           <form className="d-flex" role="search">
@@ -17,7 +17,7 @@ export const NavBar = () => {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-danger" type="submit">
               Search
             </button>
           </form>

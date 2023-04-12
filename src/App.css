@@ -6,10 +6,9 @@
 }
 
 body {
-  background-image: url('../public/Background.webp');
-  background-size: cover;
+  /* background-image: url('../public/Background.webp'); */
+  background-color: #fff;
   /* ajusta el tamaño de la imagen para cubrir todo el fondo */
-  background-repeat: no-repeat;
   /* evita que la imagen se repita */
   /* centra la imagen en el fondo */
 }

@@ -2,79 +2,14 @@ import "../styles/Index.css";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
-const items = [
-  {
-    id: 1,
-    img: "https://st2.depositphotos.com/5002805/8206/i/950/depositphotos_82066396-stock-photo-mixed-topping-pizza.jpg",
-    title: "Pizza Hawaina",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 2,
-    img: "https://cdn.colombia.com/gastronomia/2011/08/25/pizza-margarita-3684.jpg",
-    title: "Pizza carbonara",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 3,
-    img: "https://napolicartagena.com/wp-content/uploads/2022/01/La-Pizza-Hawaiana-de-Canada.jpg",
-    title: "Pizza mixta",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 4,
-    img: "https://st2.depositphotos.com/5002805/8206/i/950/depositphotos_82066396-stock-photo-mixed-topping-pizza.jpg",
-    title: "Pizza Hawaina",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 5,
-    img: "https://cdn.colombia.com/gastronomia/2011/08/25/pizza-margarita-3684.jpg",
-    title: "Pizza carbonara",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 6,
-    img: "https://napolicartagena.com/wp-content/uploads/2022/01/La-Pizza-Hawaiana-de-Canada.jpg",
-    title: "Pizza mixta",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 7,
-    img: "https://st2.depositphotos.com/5002805/8206/i/950/depositphotos_82066396-stock-photo-mixed-topping-pizza.jpg",
-    title: "Pizza Hawaina",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 8,
-    img: "https://cdn.colombia.com/gastronomia/2011/08/25/pizza-margarita-3684.jpg",
-    title: "Pizza carbonara",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-  {
-    id: 9,
-    img: "https://napolicartagena.com/wp-content/uploads/2022/01/La-Pizza-Hawaiana-de-Canada.jpg",
-    title: "Pizza mixta",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae consequuntur ab, velit voluptates quos corporis maxime aperiam hic aut nobis fugiat autem suscipit error doloribus nihil dolores vel neque quaerat",
-  },
-];
-export const Index = () => {
-  const [selectedId, setSelectedId] = useState(null);
 
+export const Index = ({allProducts}) => {
+  const [selectedId, setSelectedId] = useState(null);
   return (
     <>
       <motion.div className="container principal">
         <motion.div className="container contproducts">
-          {items.map((item) => (
+          {allProducts.map((item) => (
             <motion.div
               initial={{ opacity: 0, y: 0, width: "100%" }}
               animate={{ opacity: 1, y: 0, width: "33%" }}
@@ -121,7 +56,7 @@ export const Index = () => {
             >
               <motion.div
                 className="select"
-                layoutId={items.find((item) => item.id === selectedId)}
+                layoutId={allProducts.find((item) => item.id === selectedId)}
               >
                 <motion.div
                   onClick={() => setSelectedId(null)}
@@ -131,11 +66,11 @@ export const Index = () => {
                 </motion.div>
                 <motion.img
                   className="imgContainer col-6"
-                  src={`${items.find((item) => item.id === selectedId).img}`}
+                  src={`${allProducts.find((item) => item.id === selectedId).img}`}
                 />
                 <motion.div style={{ margin: "5px" }} className="card-body">
                   <motion.h5 style={{ margin: "5px" }} className="card-title">
-                    {items.find((item) => item.id === selectedId).title}
+                    {allProducts.find((item) => item.id === selectedId).title}
                   </motion.h5>
                   <motion.h6
                     style={{ margin: "5px" }}
@@ -144,7 +79,7 @@ export const Index = () => {
                     Pizza
                   </motion.h6>
                   <motion.p style={{ margin: "5px" }} className="card-text">
-                    {items.find((item) => item.id === selectedId).description}
+                    {allProducts.find((item) => item.id === selectedId).description}
                   </motion.p>
                   <button className="btn btn-success">
                     <NavLink href="#" className={"btn-buynow"}>

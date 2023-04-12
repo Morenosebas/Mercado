@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import "/Users/Admin/Desktop/javascript/Mercado/front/src/Components/styles/NavMenu.css"
+import "../../styles/NavMenu.css"
 
 const Path = props => (
   <motion.path

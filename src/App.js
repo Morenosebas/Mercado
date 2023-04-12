@@ -17,13 +17,15 @@ import { Sell } from './Components/privateComponents/sellpage';
 import { CreateShops } from './Components/privateComponents/createShop';
 import { ShopList } from './Components/privateComponents/shopList';
 import { ShopProfile } from './Components/privateComponents/shopProfile';
+import { ShopPublicList } from './Components/publicComponents/shops'
 import { CreateProduct } from './Components/privateComponents/createProduct';
-
+import { useGetShopsData } from './Components/Controllers/fetch';
 
 function App() {
 
   const dispatch = useDispatch();
   const Authenticated = useSelector(state => state.session.isAuthenticated);
+  const [shops, products, fetchProducts] = useGetShopsData();
   useEffect(() => {
     setInterval(() => {
       dispatch(checkAuthState());
@@ -42,7 +44,14 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             exit={{ opacity: 0 }}>
-            <Index /></motion.div>} />
+            <Index allProducts={products} /></motion.div>} />
+          <Route exact path='/shops' element={<motion.div
+            key="ShopPublicList"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            exit={{ opacity: 0 }}>
+            <ShopPublicList shopList={shops} /></motion.div>} />
           <Route exact path='/about' element={<motion.div
             key="about"
             initial={{ opacity: 0 }}
