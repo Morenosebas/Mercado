@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: flex-start;
   margin-top: 25px;
-  top: 5%;
   transition: all 1s;
 }
 
@@ -28,7 +27,7 @@
 
 .principal {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   display: inline-flex;
   width: 100%;
   height: 100%;
@@ -86,7 +85,6 @@
   height: 100%;
   transition: all 3s;
   filter: blur(0px) drop-shadow(0px 0px 10px #000);
-
 }
 
 .exit {
@@ -111,12 +109,13 @@
 }
 
 .contproducts::-webkit-scrollbar {
-  width: 2px;
-}
+  width: 5px;
+  }
 
 .contproducts::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: white;
   border-radius: 15px;
+  
 }
 
 .contproducts::-webkit-scrollbar-track {

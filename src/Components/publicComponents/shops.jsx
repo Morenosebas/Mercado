@@ -3,6 +3,7 @@ import "../styles/shopList.css";
 export const ShopPublicList = ({ shopList }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    console.log(shopList)
     shopList ? setLoading(false) : setLoading(true);
   }, [shopList]);
 
@@ -51,8 +52,16 @@ export const ShopPublicList = ({ shopList }) => {
     );
   } else {
     return (
-      <div className="spinner-border text-danger" role="status">
-        <span className="visually-hidden">Loading...</span>
+      <div
+        className="container-fluid d-flex flex-column align-items-center justify-content-center position-absolute"
+        style={{ height: "100%" }}
+      >
+        <div
+          className="spinner-border text-danger"
+          style={{ marginBottom: "20px" }}
+          role="status"
+        />
+        <span className="fw-bolder" >Cargando...</span>
       </div>
     );
   }
