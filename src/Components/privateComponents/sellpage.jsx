@@ -5,7 +5,7 @@ export const Sell = () => {
   return (
     <div className="sellcont">
       <div className="row headerSell">
-        <div className="col-2 headerSell">Vender</div>
+        <div className="col-2 headerSell" style={{color:"white"}}>Vender</div>
         <div className="col-10 colHeader">
           Para Vender en FastEats <br />
           necesitas crear tu tienda. Hazlo ahora!

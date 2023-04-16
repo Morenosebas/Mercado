@@ -2,7 +2,6 @@ import "./App.css";
 import { NavBar } from "./Components/publicComponents/navbar";
 import { SocialNet } from "./Components/publicComponents/Socialnet";
 import { Index } from "./Components/publicComponents/Index";
-import { Footer } from "./Components/publicComponents/footer";
 import { About } from "./Components/publicComponents/about";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -33,6 +32,7 @@ function App() {
   }, [dispatch, Authenticated]);
   useEffect(() => {
     fetchProducts();
+    console.log(products)
   }, []);
   const { isAuthenticated, storeS } = store.getState().session;
   return (
@@ -250,7 +250,6 @@ function App() {
           />
         </Routes>
       </AnimatePresence>
-      <Footer />
     </Router>
   );
 }

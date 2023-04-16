@@ -17,8 +17,9 @@
   width: 100%;
   left: -12px;
   height: 100%;
-  color: white;
-  background-color: rgb(172, 17, 17);
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(109, 17, 17);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -26,18 +27,10 @@
 }
 
 .principal {
-  position: absolute;
-  z-index: 0;
-  display: inline-flex;
-  width: 100%;
-  height: 100%;
-  left: 50%;
-  top: 58%;
-  transform: translate(-50%, -50%);
-  border: 2px solid transparent;
-  outline: #000 3px solid;
+  padding-bottom: 5%;
+  padding-top: 5%;
+  margin-bottom: 3%;
   transition: all 1s;
-  justify-content: space-between;
 }
 
 .principal:hover {
@@ -46,10 +39,10 @@
 }
 
 .despl {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 15%;
-  height: 66%;
+  min-height: 450px;
   z-index: 100;
 }
 
@@ -58,20 +51,7 @@
   height: 100%;
 }
 
-.title {
-  position: relative;
-  margin-top: 100%;
-  color: #fffcfc;
-  font-weight: bold;
-  font-size: 25px;
-}
 
-.titleSelect {
-  position: relative;
-  color: #000;
-  font-weight: bold;
-  font-size: 25px;
-}
 
 .contproducts {
   position: relative;
@@ -79,8 +59,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   transition: all 3s;
@@ -89,38 +68,22 @@
 
 .exit {
   position: relative;
-  width: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-width: 25px;
   height: 100%;
+  display: flex;
+  align-items: center;
   background-color: rgb(172, 17, 17);
   transition: all 1s;
+  justify-content: center;
   cursor: pointer;
 }
 
-.select:hover {
-  background-color: rgb(255, 4, 4);
-}
 
 .exit:hover {
   filter: brightness(2.2);
   filter: saturate(3);
 }
 
-.contproducts::-webkit-scrollbar {
-  width: 5px;
-  }
-
-.contproducts::-webkit-scrollbar-thumb {
-  background-color: white;
-  border-radius: 15px;
-  
-}
-
-.contproducts::-webkit-scrollbar-track {
-  background-color: transparent;
-}
 
 .btn-buynow {
   text-decoration: none;

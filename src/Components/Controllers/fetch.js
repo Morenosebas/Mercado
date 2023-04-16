@@ -32,49 +32,44 @@ export const useInitSession = () => {
   const [error, setError] = useState(null);
   const selector = useSelector((state) => state.session);
   const dispatch = useDispatch();
+
   const fetchSession = async (TypeRequest, event) => {
     const form = new FormData(event.target);
     const data = {
       username: form.get("username"),
       password: form.get("password"),
     };
-
-    fetch(`http://localhost:5000/api/${TypeRequest}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-
-      credentials: "include",
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.isAuthenticated) {
-          const username = data.requestUser.username;
-          const createdDt = data.requestUser.createdAt;
-          const updatedDt = data.requestUser.updatedAt;
-          const id = data.requestUser._id;
-          console.log(data);
-          setIsAuthenticated(true);
-          dispatch(
-            initSession({
-              username,
-              createdDt,
-              updatedDt,
-              id: id,
-              storeS: data.requestUser.store,
-            })
-          );
-          setError(false);
-        }
-        return "Hola";
-      })
-      .catch((err) => {
-        setError({ err });
+    try {
+      const response = await fetch(`http://localhost:5000/api/${TypeRequest}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        credentials: "include",
+        body: JSON.stringify(data),
       });
+      const responseData = await response.json();
+      if (responseData.isAuthenticated) {
+        const { username, requestUser } = responseData;
+        const { createdAt, updatedAt, _id, store } = requestUser;
+        setIsAuthenticated(true);
+        dispatch(
+          initSession({
+            username: username,
+            createdDt: createdAt,
+            updatedDt: updatedAt,
+            id: _id,
+            storeS: store,
+          })
+        );
+        setError(null);
+      } else {
+        setError(responseData.error);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
   };
-
-  return [isAuthenticated, fetchSession, error];
+  return [isAuthenticated, fetchSession, error, setError];
 };

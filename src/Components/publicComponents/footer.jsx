@@ -1,43 +1,47 @@
 import "../styles/footer.css";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
     <footer id="footer">
       <div className="footer__container">
         <div className="footer__container__left">
-          <div className="footer__container__left__logo"></div>
-          <div className="footer__container__left__text">
+          <div
+            className="h1 fw-bolder"
+            style={{ fontFamily: "cursive", color: "#d70505" }}
+          >
+            FastEats
+          </div>
+          <div className="h6">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              euismod bibendum laoreet. Proin gravida dolor sit amet lacus
-              accumsan et viverra justo commodo. Proin sodales pulvinar tempor.
-              Cum sociis natoque penatibus et magnis dis parturient montes,
-              nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
-              vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget
-              odio.
+              FastEats es una empresa dedicada al servicio de delivery online
+              que se especializa en ofrecer comida rápida y saludable a sus
+              clientes. La empresa cuenta con una plataforma fácil de usar que
+              permite a los clientes realizar pedidos en línea y recibir su
+              comida en la comodidad de su hogar u oficina.
             </p>
           </div>
         </div>
         <div className="footer__container__right">
-          <div className="footer__container__right__title">
-            <h2>Quick Links</h2>
+          <div className="footer__container__right__title footer__container__right__links">
+            <h2 style={{ marginTop: "20px" }}>Links</h2>
           </div>
           <div className="footer__container__right__links">
             <ul>
               <li>
-                <a href="#">Home</a>
+                <Link to="/">Inicio</Link>
               </li>
               <li>
-                <a href="#">About</a>
+                <Link to="/Products">Productos</Link>
               </li>
               <li>
-                <a href="#">Services</a>
+                <Link to="/Shops">Tiendas</Link>
               </li>
               <li>
-                <a href="#">Portfolio</a>
+                <Link to="/Servicios">Servicios</Link>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <Link to="/Contactanos">Contacto</Link>
               </li>
             </ul>
           </div>

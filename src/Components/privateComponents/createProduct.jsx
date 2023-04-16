@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const CreateProduct = () => {
   const { idShop } = useParams();
   const [created, setCreated] = useState(false);
+  const Navigation = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(`Create Product`);
@@ -19,17 +21,21 @@ export const CreateProduct = () => {
       mode: "cors",
       credentials: "include",
       body: formulario,
-    })
-      .catch(err => console.warn(err))
-    const response = await data.json()
-    console.log(response)
+    }).catch((err) => console.warn(err));
+    const response = await data.json();
+    console.log(response);
     if (response.created) {
-      setCreated(true)
+      console.log("created product");
+      setCreated(true);
     } else {
-      setCreated(false)
+      setCreated(false);
     }
   };
 
+  if (created)
+    Navigation(`/user/shops/${idShop}`, {
+      replace: true,
+    });
   return (
     <div
       className="container-fluid col w-50 justify-content-center d-flex align-items-center"
@@ -88,7 +94,10 @@ export const CreateProduct = () => {
               />
             </div>
             <p className="pt-2 d-flex align-items-center flex-column">
-              <button className="btn btn-light btn d-flex align-items-bottom p-2">
+              <button
+                type="submit"
+                className="btn btn-light btn d-flex align-items-bottom p-2"
+              >
                 enviar
               </button>
             </p>

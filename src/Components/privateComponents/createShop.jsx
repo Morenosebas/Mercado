@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { createShop } from "../../Redux/slice/user";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CreateShops = () => {
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
   const { storeS } = useSelector((state) => state.session);
   const [shop, setShop] = useState(false);
   console.log(storeS);
@@ -39,8 +41,9 @@ export const CreateShops = () => {
       });
   };
 
-  useEffect(() => {}, [shop]);
-  if (shop) return <Navigate to="/sell " />;
+  if (shop) {
+    Navigate("/user/shops", { replace: true });
+  }
   return (
     <div className="container newStoreCont">
       <div className="row justify-content-center">
