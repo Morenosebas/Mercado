@@ -2,7 +2,7 @@ import "../styles/Navbar.css";
 import { NavLink } from "react-router-dom";
 import { NavMenu } from "./navMenu";
 import { ShopCarView } from "./shopCarView";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 export const NavBar = () => {
   const [show, setShow] = useState(false);

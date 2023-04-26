@@ -1,7 +1,9 @@
 import { useDispatch } from "react-redux";
-import { addCart as deleteCartReducer } from "../../Redux/slice/user";
-export const ShopCarView = function ({ products,onMouseLeave }) {
+import { store } from "../../Redux/store.config";
+import { addCart as deleteCartReducer } from '../../Redux/slice/user'
+export const ShopCarView = function ({ products, onMouseLeave }) {
   const dispatch = useDispatch();
+
   const deleteCart = function () {
     dispatch(deleteCartReducer({ cart: [] }));
     sessionStorage.removeItem("cart");
@@ -75,7 +77,7 @@ export const ShopCarView = function ({ products,onMouseLeave }) {
                       <td>${product.price * product.quantity}</td>
                       <td className="d-flex " style={{ justifyContent: "space-between", alignItems: "center" }}>
                         <td onClick={() => deleteProduct(product._id)} className="btn btn-danger text-dark">x</td>
-                        <td  onClick={() => lessProduct(product._id)}className="btn btn-warning text-dark">-</td>
+                        <td onClick={() => lessProduct(product._id)} className="btn btn-warning text-dark">-</td>
                       </td>
                     </tr>
                   ))}

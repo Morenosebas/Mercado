@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
-import sessionReducer, { persistedState } from './slice/user'
+import { configureStore } from "@reduxjs/toolkit";
+import { persistedState, reducer } from "./slice/user";
 
 export const store = configureStore({
-    reducer: {
-        session: sessionReducer,
-    },
-    preloadedState: persistedState,
+  reducer: {
+    session: reducer,
+  },
+  preloadedState: persistedState,
 });

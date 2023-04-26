@@ -4,12 +4,10 @@ import { store } from "../store.config";
 const loadState = () => {
   try {
     const serializedState = localStorage.getItem("state");
-    const serializedState2 = sessionStorage.getItem("cart");
     if (serializedState === null) {
       return undefined;
     }
     const state = JSON.parse(serializedState);
-    const cart = JSON.parse(serializedState2);
     console.log("states: ", state);
     if (
       state &&
@@ -85,8 +83,6 @@ const sessionSlice = createSlice({
 
 const persistedState = loadState();
 
-const reducer = sessionSlice.reducer;
-
 export const checkAuthState = createAsyncThunk(
   "session/checkAuthState",
   async () => {
@@ -128,4 +124,6 @@ export { persistedState };
 export const { initSession, logoutSession, createShop, addCart } =
   sessionSlice.actions;
 
-export default reducer;
+export const reducer = sessionSlice.reducer;
+
+// export  reducer;

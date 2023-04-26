@@ -1,9 +1,7 @@
 import "../styles/socialnet.css";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { store } from "../../Redux/store.config";
+import { useSelector,useDispatch} from "react-redux";
 import { logoutSession } from "../../Redux/slice/user";
 
 export const SocialNet = () => {

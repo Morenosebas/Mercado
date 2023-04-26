@@ -11,7 +11,6 @@ import { Profile } from "./Components/privateComponents/profile";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthState } from "./Redux/slice/user";
-import { store } from "./Redux/store.config";
 import { ProtectedRoute } from "./Components/privateComponents/privateSite";
 import { Sell } from "./Components/privateComponents/sellpage";
 import { CreateShops } from "./Components/privateComponents/createShop";
@@ -20,21 +19,19 @@ import { ShopProfile } from "./Components/privateComponents/shopProfile";
 import { ShopPublicList } from "./Components/publicComponents/shops";
 import { CreateProduct } from "./Components/privateComponents/createProduct";
 import { useGetShopsData } from "./Components/Controllers/fetch";
-
 function App() {
   const dispatch = useDispatch();
-  const Authenticated = useSelector((state) => state.session.isAuthenticated);
+  const { isAuthenticated, storeS } = useSelector((state) => state.session);
   const [shops, products, fetchProducts] = useGetShopsData();
   useEffect(() => {
     setInterval(() => {
       dispatch(checkAuthState());
     }, 5000);
-  }, [dispatch, Authenticated]);
+  }, [dispatch, isAuthenticated]);
   useEffect(() => {
     fetchProducts();
-    console.log(products)
+    console.log(products);
   }, []);
-  const { isAuthenticated, storeS } = store.getState().session;
   return (
     <Router>
       <NavBar />
